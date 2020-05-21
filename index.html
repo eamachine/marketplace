@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie-edge">
+     <title>Mundo Mascotas</title>
+     <script src="map.js"></script>
+     <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 800px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+       }
+    </style>
+   </head>
+   <body>
+     <h3>Mundo Mascotas</h3>
+     <div id="map"></div>
+     <script async defer
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpHoMlWzIafcPb50YNFHS_ZSZjYf7AVXU&callback=getLocation">
+     </script>
+   </body>
+ </html>
