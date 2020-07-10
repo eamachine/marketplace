@@ -1,17 +1,27 @@
 <template>
+<div>
+  <main-header></main-header>
   <div class="home">
-   <home-intro></home-intro>
-  <stores></stores>
+    <div class="home-container">
+      <stores id="s1"></stores>
+      <google-main-map></google-main-map>      
+      <shop-section id="s2"></shop-section>
+      <values/>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
 import Stores from '@/components/home/Stores.vue'
-import HomeIntro from '@/components/home/HomeIntro.vue'
+import Values from '@/components/home/Values.vue'
+import GoogleMainMap from '@/components/home/GoogleMainMap.vue'
+import ShopSection from '@/components/shops/ShopSection.vue'
+import MainHeader from '@/components/header/MainHeader.vue'
 
 export default {
   name: 'Home',
-  components: { Stores, HomeIntro }
+  components: { Stores, Values, GoogleMainMap, ShopSection, MainHeader }
 }
 </script>
 
@@ -20,13 +30,17 @@ export default {
 
 .home {
   width: 100%;
-  margin: 300px 0 0 0;
+  margin: 20 0 100px 0;
 }
 
 @media only screen and (min-width: 768px) {
   .home {
+    margin: 0px auto 100px;
+  }
+
+  .home-container {
     max-width: 1280px;
-    margin: 150px auto 0;
+    margin: auto;
   }
 }
 </style>

@@ -9,32 +9,22 @@
       :key="userlocation"
       :position="userlocation"
       :icon="{
-        url: require('../../assets/logo-sm.png'),
+        url: require('../../assets/icon/logo-sm.png'),
         scaledSize: {width: 30, height: 30}
         }"
       @dragend="moveAddress"
+      @click="infoWinOpen=!infoWinOpen"
       :animation="2"
       :draggable="true"
       ></gmap-marker>
-    <gmap-marker
-        :key="index"
-        v-for="(m, index) in markers"
-        :position="m.position"
-        :icon="{
-          url: require('../../assets/market.png'),
-          scaledSize: {width: 36, height: 36}}"
-        @click="toggleInfoWindow(m, index)"
-      ></gmap-marker>
-
       <gmap-info-window
         :options="infoOptions"
-        :position="infoWindowPos"
+        :position="center"
         :opened="infoWinOpen"
         @closeclick="infoWinOpen=false"
       >
         <div v-html="infoContent"></div>
       </gmap-info-window>
-
     </gmap-map>
   </div>
 </template>
@@ -44,12 +34,8 @@ export default {
   name: 'GoogleMap',
   data () {
     return {
-      infoWinOpen: false,
-      infoContent: '',
-      infoWindowPos: {
-        lat: 0,
-        lng: 0
-      },
+      infoWinOpen: true,
+      infoContent: `<div class="">Puedes mover el pin para ajustar la ubicación</div>`,
       infoOptions: {
         pixelOffset: {
           width: 0,
@@ -57,63 +43,80 @@ export default {
         }
       },
       center: { lat: 4.6193564, lng: -74.0841302 },
-      userlocation: { lat: 0, lng: 0 },
-      markers: [{position: {lat: 4.719309, lng: -74.084088}}, {position: {lat: 4.719309, lng: -74.0841302}}, {position: { lat: 4.6193564, lng: -74.0841302 }}, {position: {lat: 4.729309, lng: -74.085088}}, {position: {lat: 4.719609, lng: -74.0851302}}, {position: { lat: 4.6193964, lng: -74.0821302 }}]
+      userlocation: { lat: 4.6193564, lng: -74.0841302 },
     }
   },
-
   beforeMount () {
-    this.geolocate()
+    if (this.$store.state.address) {
+      this.geolocationFromAddress(this.$store.state.address)
+    }
+    else {
+      this.geolocate()
+    }    
   },
-
   methods: {
     geolocate: function () {
       navigator.geolocation.getCurrentPosition(position => {
-        this.userlocation = {
+        const latLng = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.center = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
+
+        this.$store.commit('setUserLocation',  latLng)
+        this.userlocation = latLng
+        this.center = latLng
+
+        var geocoder = new google.maps.Geocoder()
+        geocoder.geocode({location: latLng}, this.getGeoCoder)
+
+        this.$store.commit('setLocated')
       })
     },
-    toggleInfoWindow: function (marker, idx) {
-      this.infoWindowPos = marker.position
-      this.infoContent = this.getInfoWindowContent(marker)
-
-      if (this.currentMidx === idx) {
-        this.infoWinOpen = !this.infoWinOpen
-      } else {
-        this.infoWinOpen = true
-        this.currentMidx = idx
-      }
-      this.center = marker.position
-    },
-    getInfoWindowContent: function (marker) {
-      return (
-        `<div class="">
-          <div>
-            <div>
-              <div class="m-2"><span style="font-weight: bold;">Device Name: </span>
-                ${marker.name}
-              </div>
-            </div>
-            <div class="m-2"><span style="font-weight: bold;">Location:  </span>
-              ${marker.location}
-              <br>
-            </div>
-          </div>
-        </div>`)
+    geolocationFromAddress: function(address) {
+      var geocoder = new google.maps.Geocoder()
+      geocoder.geocode({'address': address}, this.setGeoCoder)
     },
     moveAddress: function (marker) {
+      this.$store.commit('setUserLocation',  {
+          lat: marker.latLng.lat(),
+          lng: marker.latLng.lng()
+        })
+
+      this.center = {
+        lat: marker.latLng.lat(),
+        lng: marker.latLng.lng()
+      }
+
       var geocoder = new google.maps.Geocoder()
       geocoder.geocode({latLng: marker.latLng}, this.getGeoCoder)
     },
     getGeoCoder: function (results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
-        this.$emit('changeAddress', results[0].formatted_address)
+        this.$store.commit('setAddress', results[0].formatted_address)
+      } else {
+        console.log('Cannot determine address at this location.' + status)
+      }
+    },
+    setGeoCoder: function (results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+
+        this.center = {
+          lat: latitude,
+          lng: longitude
+        }
+
+        this.userlocation = {
+          lat: latitude,
+          lng: longitude
+        }
+
+        this.$store.commit('setUserLocation',  {
+          lat: latitude,
+          lng: longitude
+        })
+
       } else {
         console.log('Cannot determine address at this location.' + status)
       }
@@ -126,7 +129,7 @@ export default {
 <style scoped>
 .g-map {
   width:100%;
-  height: 550px;
+  height: 450px;
   border-radius:20px;
   overflow: hidden;
 }

@@ -22,6 +22,6 @@ export default {
   bottom: 0;
   background-color: rgba(0,0,0,0.7);
   z-index: 2;
-  cursor: pointer;
+  overflow: hidden;
 }
 </style>

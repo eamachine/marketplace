@@ -1,44 +1,41 @@
 <template>
-   <div class="stores">
-    <h2 class="h2">Encuentra nuestras tiendas</h2>
-    <ul class="store-list">
-      <li v-for="store in stores" v-bind:key="store">
-        <store :name="store.name" :urlimg="store.urlimg"></store>
-      </li>
-    </ul>
-  </div>
+   <section class="general-container">
+    <div class="header-container">
+      <h2 class="h2">Descubre nuestra red</h2>
+      <services />
+    </div>
+    <div class="stores">
+      <ul class="store-list" :class="{ 'open' : open }">
+        <li v-for="store in this.$store.getters.getFilteredStores" v-bind:key="store" class="store-container">
+          <store v-bind:store="store"></store>
+        </li>
+      </ul>
+      <div class="all-container" v-if="this.$store.getters.getFilteredStores.length > 6">
+        <button v-if="!open" class="all" @click="toogleView()">Ver mas</button>
+        <button v-if="open" class="all" @click="toogleView()">Ver menos</button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import Store from '@/components/home/Store.vue'
+import Services from '@/components/home/Services.vue'
 
 export default {
   name: 'Stores',
-  components: { Store },
+  components: { Store, Services },
   data () {
     return {
-      stores: [
-        { name: 'Animal Pets', urlimg: 'animalvet.png' },
-        { name: 'Cat Dog Vet', urlimg: 'catdog.png' },
-        { name: 'Clinica vet', urlimg: 'clinica vet.png' },
-        { name: 'Dogtor', urlimg: 'dogtor.png' },
-        { name: 'Go pets', urlimg: 'go pets.jpg' },
-        { name: 'Happy puppy', urlimg: 'happy puppy.jpg' },
-        { name: 'Hatovet', urlimg: 'hatovet.png' },
-        { name: 'Hello Pets', urlimg: 'hello Pets.jpg' },
-        { name: 'Hometown', urlimg: 'hometown.png' },
-        { name: 'kanicat', urlimg: 'kanicat.png' },
-        { name: 'Mascota salud', urlimg: 'mascota salud.png' },
-        { name: 'Normalnimal', urlimg: 'normalnimal.png' },
-        { name: 'Pequepeluts', urlimg: 'Pequepeluts.jpg' },
-        { name: 'Pet shop Mandalay', urlimg: 'per shop.jpg' },
-        { name: 'Petshop Kennedy', urlimg: 'petshop1.jpg' },
-        { name: 'Sara-hurtado', urlimg: 'sara-hurtado.jpg' },
-        { name: 'Tienda mascota', urlimg: 'tienda mascota.jpg' },
-        { name: 'Zanovet', urlimg: 'zanovet.jpg' },
-        { name: 'Zoomania', urlimg: 'zoomania.png' },
-        { name: 'Club mascotas', urlimg: 'club mascotas.png' }
-      ]
+      open: false
+    }
+  },
+  methods: {
+    toogleView: function () {
+      this.open = !this.open
+      if (!this.open) {
+        this.$scrollTo('#s1', { offset: -100 })
+      }
     }
   }
 }
@@ -46,44 +43,119 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.stores {
-  background: rgba(255, 255, 255, 0.7);
+.general-container {
+  margin: 60px 0 0 0;
+}
+
+.all-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  margin: auto;
+}
+
+.header-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+.all {
+  cursor: pointer;
   border-radius: 10px;
-  min-height: 800px;
-  margin: 20px 10px;
-  padding: 10px;
+  border: none;
+  padding: 15px 30px;
+  background: #00DADC;
+  color: #2C3E50;
+  margin-left: 20px;
+  outline: none;
+}
+
+.store-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 10px 5px;
+  border-radius: 10px;
+  height: 15vh;
+  width: 24vw;
+}
+
+.store-container + .store-container {
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+
+.stores {
+  margin: 20px 0;
   text-align: center;
 }
 
 .store-list {
-  margin: 50px 0 0 0;
+  margin: 30px 0 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   justify-content: center;
   align-items: baseline;
   flex-wrap: wrap;
+  max-height: 360px;
+  overflow: hidden;
+  transition:max-height 4s ease-out;
 }
 
-.h2{
-  color: #D90C1F;
-  font-size: 18px;
-  font-weight: 600;
+.h2 {
+  font-size: 28px;
+  font-family: "fredokaone";
+  color: #2C3E50;
 }
 
-@media only screen and (min-width: 768px) {
+.open {
+  max-height: 5000px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .general-container {
+    margin: 60px auto 0;
+  }
+  
   .stores {
-    margin: 25px 0;
-    padding: 25px 5%;
+    width: 90%;
+    margin: 60px auto 0;
   }
 
   .store-list {
-    margin: 50px 0 0 0;
+    max-height: 250px;
+    margin: 0;
     padding: 0;
   }
 
   .h2 {
-    font-size: 24px;
+    font-size: 32px;
+  }
+
+  .store-container {
+    height: 180px;
+    width: 190px;
+  }
+
+  .all-container {
+    width: 100%;
+  }
+
+  .header-container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+  }
+  
+  .open {
+    max-height: 3000px;
   }
 }
 </style>

@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Vuex from 'vuex'
+import VueScrollTo from 'vue-scrollto'
 
 Vue.config.productionTip = false
 
@@ -14,10 +16,59 @@ Vue.use(VueGoogleMaps, {
   }
 })
 
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    location: 'Colombia',
+    userlocation: { lat: 4.6193564, lng: -74.0841302 },
+    service: '',
+    located: false,
+    address: null,
+    locations: [],
+    stores: []
+  },
+  getters: {
+    getFilteredStores (state) {
+      return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service))
+    },
+    getStore (state, name) {
+      return state.stores.filter(store => store.name === name)
+    }
+  },
+  mutations: {
+    setLocation (state, location) {
+      state.location = location
+    },
+    setAddress (state, address) {
+      console.log(address)
+      state.address = address
+    },
+    addLocations (state, locations) {
+      state.locations = locations
+    },
+    addStores (state, stores) {
+      state.stores = stores
+    },
+    setLocated (state) {
+      state.located = true
+    },
+    setService (state, service) {
+      state.service = service
+    },
+    setUserLocation (state, position) {
+      state.userlocation = position
+    }
+  }
+})
+
+Vue.use(VueScrollTo)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  store: store
 })

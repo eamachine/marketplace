@@ -1,16 +1,22 @@
 <template>
   <div class="app">
-    <main-header></main-header>
     <router-view />
+    <main-footer></main-footer>
   </div>
 </template>
 
 <script>
-import MainHeader from '@/components/header/MainHeader.vue'
+import MainFooter from '@/components/footer/MainFooter.vue'
+import stores from '@/data/stores.json'
+import locations from '@/data/locations.json'
 
 export default {
   name: 'App',
-  components: {MainHeader}
+  components: { MainFooter },
+  mounted () {
+    this.$store.commit('addStores', stores)
+    this.$store.commit('addLocations', locations)
+  }
 }
 </script>
 
@@ -19,79 +25,65 @@ export default {
 /*@import "./assets/reset.css";*/
 
 @font-face {
-font-family:"aaux-next";
-src:url("~@/assets/fonts/Aaux Next light.woff2") format("woff2"),
-url("~@/assets/fonts/Aaux Next light.woff") format("woff"),
-url("~@/assets/fonts/Aaux Next light.otf") format("opentype");
-font-display:auto;font-style:normal;font-weight:300;
+  font-family: "asap";
+  src: url("~@/assets/fonts/Asap-Regular.woff") format("woff"),
+       url("~@/assets/fonts/Asap-Regular.ttf") format("truetype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: normal;
 }
 
 @font-face {
-font-family:"aaux-next";
-src:url("~@/assets/fonts/Aaux Next regular.woff2") format("woff2"),
-url("~@/assets/fonts/Aaux Next regular.woff") format("woff"),
-url("~@/assets/fonts/Aaux Next regular.otf") format("opentype");
-font-display:auto;font-style:normal;font-weight:400;
+  font-family: "asap";
+  src: url("~@/assets/fonts/Asap-SemiBold.woff") format("woff"),
+       url("~@/assets/fonts/Asap-SemiBold.ttf") format("truetype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 @font-face {
-font-family:"aaux-next";
-src:url("~@/assets/fonts/Aaux Next Medium.woff2") format("woff2"),
-url("~@/assets/fonts/Aaux Next Medium.woff") format("woff"),
-url("~@/assets/fonts/Aaux Next Medium.otf") format("opentype");
-font-display:auto;font-style:normal;font-weight:500;
+  font-family: "asap";
+  src: url("~@/assets/fonts/Asap-Bold.woff") format("woff"),
+       url("~@/assets/fonts/Asap-Bold.ttf") format("truetype");
+  font-display: auto;
+  font-style: normal;
+  font-weight: bolder;
 }
 
 @font-face {
-font-family:"aaux-next";
-src:url("~@/assets/fonts/Aaux Next Semi Bold.woff2") format("woff2"),
-url("~@/assets/fonts/Aaux Next Semi Bold.woff") format("woff"),
-url("~@/assets/fonts/Aaux Next Semi Bold.otf") format("opentype");
-font-display:auto;font-style:normal;font-weight:600;
+  font-family: "fredokaone";
+  src: url("~@/assets/fonts/FredokaOne-Regular.woff") format("woff"),
+    url("~@/assets/fonts/FredokaOne-Regular.ttf") format("truetype");
 }
 
 @font-face {
-font-family:"aaux-next";
-src:url("~@/assets/fonts/Aaux Next Bold.woff2") format("woff2"),
-url("~@/assets/fonts/Aaux Next Bold.woff") format("woff"),
-url("~@/assets/fonts/Aaux Next Bold.otf") format("opentype");
-font-display:auto;font-style:normal;font-weight:700;
+  font-family: "sacramento";
+  src: url("~@/assets/fonts/Sacramento-Regular.woff") format("woff"),
+    url("~@/assets/fonts/Sacramento-Regular.ttf") format("truetype");
 }
 
-.hide-mobile {
+@font-face {
+  font-family: "monserrat";
+  src: url("~@/assets/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+.hide-mobile, .hide-tablet, .hide-md-desktop, .hide-sm-mobile {
   display: none;
   visibility: hidden;
 }
 
-.hide-desktop {
+.hide-desktop, .show-sm-mobile {
   display: block;
   visibility: visible;
 }
 
 .app {
-  font-family: 'aaux-next', sans-serif;
+  font-family: "monserrat", sans-serif;
+  font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 20px;
-}
-
-body {
-  background-image: url("~@/assets/sm-back.jpg");
-  background-position: top center;
-  background-repeat: no-repeat;
-  background-size: auto 90vh;
-  background-color: #eee;
-}
-
-.hide-sm-mobile {
-  display: none;
-  visibility: hidden;
-}
-
-.show-sm-mobile {
- display: block;
-visibility: visible;
 }
 
 @media only screen and (min-width: 321px) {
@@ -116,24 +108,91 @@ visibility: visible;
     display: none;
     visibility: hidden;
   }
-
-  body {
-    background-image: url("~@/assets/md-back.jpg");
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: 100vw auto;
-  }
 }
 
-/*LARGE DESKTOPS*/
+@media only screen and (min-width: 1024px) {
+  .hide-tablet {
+    display: block;
+    visibility: visible;
+  }
+}
 
 @media only screen and (min-width: 1440px) {
-  body {
-    background-image: url("~@/assets/back.jpg");
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  .hide-md-desktop {
+    display: block;
+    visibility: visible;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/*COMMON STYLES */
+
+.arrow-icon {
+  width: 40px;
+  padding: 0.25em;
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.left-bar {
+  position: absolute;
+  background-color: transparent;
+  top: 0;
+  left:0;
+  width: 20px;
+  height: 5px;
+  display: block;
+  transform: rotate(35deg);
+  float: right;
+  border-radius: 1px;
+}
+
+.left-bar:after {
+  content:"";
+  width: 20px;
+  height: 5px;
+  display: block;
+  float: right;
+  border-radius: 10px 6px 6px 10px;
+  transition: all 0.5s cubic-bezier(.25,1.7,.35,.8);
+  z-index: -1;
+}
+
+.right-bar {
+  position: absolute;
+  background-color: transparent;
+  top: 0px;
+  left:13px;
+  width: 20px;
+  height: 5px;
+  display: block;
+  transform: rotate(-35deg);
+  float: right;
+  border-radius: 1px;
+}
+
+.right-bar:after {
+  content:"";
+  width: 20px;
+  height: 5px;
+  display: block;
+  float: right;
+  border-radius: 10px 6px 6px 10px;
+  transition: all 0.5s cubic-bezier(.25,1.7,.35,.8);
+  z-index: -1;
+}
+
+.open .left-bar:after {
+  transform-origin: center center;
+  transform: rotate(-70deg);
+  }
+.open .right-bar:after {
+  transform-origin: center center;
+  transform: rotate(70deg);
+}
 </style>

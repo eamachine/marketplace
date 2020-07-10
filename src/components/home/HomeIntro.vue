@@ -1,79 +1,88 @@
 <template>
   <div class="intro">
-    <h1 class="h1">LLevamos todo lo que tu mascota necesita</h1>
-    <div class="hide-desktop">
-      <div class="map-location">
-        <h3 class="h3">Encuentra los comercios cercanas a tu ubicación</h3>
-        <map-location />
-      </div>
-    </div>
-    <h3
-      class="hide-mobile"
-    >Apoyamos a los comerciantes de tu zona, todos los servicios que necesitas rapido y a la pata.</h3>
-    <p
-      class="hide-mobile"
-    >Jugetes, ropa, comida, y mil cosas mas para gatos, perros, canarios, elefantes, bueno solo exageramos. pero para todas tus mascotas tenemos mucho amor y todo lo que necesitas.</p>
+    <h2 class="h2">El centro comercial <span class="blue"> online </span> para tu mascota</h2>
+    <h1 class="h1">Encuentra Petshops, Veterinarias y mucho más.</h1>    
   </div>
 </template>
 
 <script>
-import MapLocation from '@/components/home/MapLocation.vue'
-
 export default {
-  name: 'HomeIntro',
-  components: { MapLocation }
+  name: 'HomeIntro'
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.map-location {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+.intro {
+  position: absolute;
+  top: 20vw;
+  left: 5%;
+  width: 90%;
 }
 
-.intro {
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 10px;
-  min-height: 200px;
-  padding: 10px;
-  margin: 0 10px;
-  text-align: left;
+.blue {
+  font-family: "sacramento";
+  color: #928DF2;
+  font-size: 40px;
 }
 
 .h1 {
-  color: #1f7c86;
-  font-size: 20px;
-  font-weight: 700;
+  color: #74CCD2;
+  font-size: 22px;
   text-align: center;
 }
 
-.h2,
-.h3 {
-  color: #d90c1f;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-p {
-  font-size: 14px;
+.h2 {
+  color: #B9D544;
+  font-size: 16px;
+  text-align: center;
 }
 
 @media only screen and (min-width: 768px) {
   .intro {
-    padding: 25px 10%;
-    margin: 0;
+    top: 20vw;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .intro {
+    top: 150px;
+    width: 750px;
+    left: calc(50% - 500px);
+  }
+
+  .blue {
+    font-size: 45px;
   }
 
   .h1 {
-    font-size: 28px;
-    font-weight: 800;
-    text-align: left;
+    font-size: 30px;
   }
 
   .h2 {
-    font-size: 24px;
+    font-size: 20px;
   }
+}
+
+@media only screen and (min-width: 1280px) {
+  .intro {
+    top: 150px;
+    width: 850px;
+    left: calc(50% - 600px);
+  }
+
+  .blue {
+    font-size: 50px;
+  }
+
+  .h1 {
+    font-size: 35px;
+  }
+
+  .h2 {
+  font-size: 25px;
+}
+
 }
 </style>

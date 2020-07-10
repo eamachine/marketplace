@@ -1,0 +1,53 @@
+[
+    {
+       "name":"Bogotá",
+       "states":[
+          "Kennedy",
+          "Mandalay",
+          "Suba",
+          "C.Int nacional",
+          "Niza",
+          "Bosa",
+          "Perdomo",
+          "Madelena",
+          "Bochica",
+          "Mazuren",
+          "Tintal",
+          "Salitre",
+          "Chapinero",
+          "Ferias",
+          "Min de Dios",
+          "Fontibon",
+          "Bavaria",
+          "Casablanca",
+          "Castilla",
+          "Carvajal",
+          "Candelaria",
+          "Macarena",
+          "Pnt Aranda",
+          "El prado",
+          "La Alambra",
+          "Galerias",
+          "San Rafael",
+          "Modelia",
+          "Rosales",
+          "Usaquen"
+       ]
+    },
+    {
+       "name":"Medellin",
+       "states":[
+          "El poblado",
+          "Itagui"
+       ]
+    },
+    {
+       "name":"Barranquilla",
+       "states":[
+          "Macarena",
+          "Soledad",
+          "Barranquillita",
+          "P. Colombia"
+       ]
+    }
+ ]

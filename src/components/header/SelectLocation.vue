@@ -1,8 +1,8 @@
 <template>
-  <div class="select"  v-bind:class="{'open' : open}">
+  <div class="select" v-bind:class="{'open' : open}" @blur="open=false" tabindex="0">
     <div class="selected" @click="open = !open">
-        <img class="flag hide-sm-mobile" src="../../assets/flag.png" alt="Colombia">
-        <p class="location">{{ location }}</p>
+        <img class="flag" src="../../assets/img/flag.png" alt="Colombia">
+        <p class="location hide-mobile" >{{ this.$store.state.location }}</p>
         <a class="arrow-icon">
           <span class="left-bar"></span>
           <span class="right-bar"></span>
@@ -10,12 +10,16 @@
     </div>
     <div class="options" v-if="open">
         <ul class="cities">
-            <li v-for="(city, index) in locations"  v-bind:key="city">
-              <p @mouseover="current = index">{{city.name}}</p>
+            <li class="country" @click="SetLocation('Colombia')">
+              <img class="flag-sm hide-sm-mobile" src="../../assets/img/flag.png" alt="Colombia">
+              <span class="country-txt">Colombia</span>
+            </li>
+            <li v-for="(city, index) in this.$store.state.locations"  v-bind:key="city">
+              <p @mouseover="current = index">{{city.name}} <span class="city-action" @click="SetLocation(city.name)">></span></p>
             </li>
          </ul>
          <ul class="states">
-             <li v-for="state in locations[current].states"  v-bind:key="state">
+             <li v-for="state in this.$store.state.locations[current].states"  v-bind:key="state">
                 <p @click="SetLocation(state)">{{state}}</p>
              </li>
          </ul>
@@ -28,20 +32,15 @@ export default {
   name: 'SelectLocation',
   data () {
     return {
-      location: 'Bogotá',
       open: false,
-      current: 0,
-      locations: [
-        {name: 'Bogotá', states: ['Kennedy C.', 'Mandalay', 'Suba', 'C.Int nacional', 'Niza', 'Bosa', 'Perdomo', 'Madelena', 'Bochica', 'Mazuren', 'Tintal', 'Salitre', 'Chapinero','Ferias', 'Min de Dios', 'Fontibon', 'Modelia','Bavaria', 'Casablanca', 'Castilla', 'Carvajal', 'Candelaria', 'Macarena', 'Pnt Aranda', 'El prado', 'La Alambra', 'Galerias', 'San Rafael', 'Modelia', 'Rosales', 'Usaquen']},
-        {name: 'Medellin', states: ['El poblado', 'Itagui']},
-        {name: 'Barranquilla', states: ['Macarena', 'Soledad', 'Barranquillita', 'P. Colombia']}
-      ]
+      current: 0
     }
   },
   methods: {
     SetLocation: function (state) {
-      this.location = state
+      this.$store.commit('setLocation', state)
       this.open = false
+      this.$scrollTo('#s1', { offset: -100 })
     }
   }
 }
@@ -49,96 +48,38 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.arrow-icon {
-  width: 40px;
-  display:block;
-  padding: 0.25em;
-  margin-left: 20px;
-  position: relative;
-  cursor: pointer;
-  border-radius: 2px;
-}
-
-.left-bar {
-  position: absolute;
-  background-color: transparent;
-  top: 0;
-  left:0;
-  width: 20px;
-  height: 5px;
-  display: block;
-  transform: rotate(35deg);
-  float: right;
-  border-radius: 1px;
-}
-
-.left-bar:after {
-  content:"";
-  background-color: white;
-  width: 20px;
-  height: 5px;
-  display: block;
-  float: right;
-  border-radius: 10px 6px 6px 10px;
-  transition: all 0.5s cubic-bezier(.25,1.7,.35,.8);
-  z-index: -1;
-}
-
-.right-bar {
-  position: absolute;
-  background-color: transparent;
-  top: 0px;
-  left:13px;
-  width: 20px;
-  height: 5px;
-  display: block;
-  transform: rotate(-35deg);
-  float: right;
-  border-radius: 1px;
-}
-
-.right-bar:after {
-  content:"";
-  background-color: white;;
-  width: 20px;
-  height: 5px;
-  display: block;
-  float: right;
-  border-radius: 10px 6px 6px 10px;
-  transition: all 0.5s cubic-bezier(.25,1.7,.35,.8);
-  z-index: -1;
-}
-
-.open .left-bar:after {
-  transform-origin: center center;
-  transform: rotate(-70deg);
-  }
-.open .right-bar:after {
-  transform-origin: center center;
-  transform: rotate(70deg);
+.right-bar:after, .left-bar:after {
+  background-color: #00DADC;
 }
 
 .select {
-  position: relative;
+  outline: none;
 }
 
 .location {
   margin-left: 20px;
+  color: #00DADC;
+  font-size: 13px;
 }
 
 .selected {
+  cursor: pointer;
   display: flex;
   align-items: center;
   height: 30px;
   overflow: hidden;
-  font-size: 18px;
 }
 
 .flag {
  width: 30px;
  height: 30px;
- border-radius: 5px;
+ border-radius: 50%;
+}
+
+.flag-sm {
+ width: 20px;
+ height: 20px;
+ border-radius: 50%;
 }
 
 .options {
@@ -146,33 +87,47 @@ export default {
   border-radius: 10px;
   position: absolute;
   display: flex;
-  width: 300px;
+  min-width: 320px;
+  width: 80vw;
   height: 500px;
-  background: #fff;
+  background: #1f2033;
   top: 60px;
-  right:-265px;
-  transform: translate(-90%, 0);
+  left: calc((100% - 320px)/2);
 }
 
 .options ul {
   list-style-type: none;
 }
 
+.city-action {
+  float: right;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 20px 20px;
+}
+
+.country-txt {
+  margin-left: 20px;
+}
+
 .cities {
-  color: #1f7c86;
-  margin: 10px 0 20px 0;
+  color: #00dadc;
+  margin: 5px 0 10px 0;
   padding: 0;
-  width: 120px;
-  border-right: #1f7c86 solid 1px;
+  width: 150px;
+  border-right: #00dadc solid 1px;
 }
 
 .cities p {
-  padding: 0 15px 10px 20px;
+  padding: 0 30px 10px 20px;
   cursor: pointer;
 }
 
 .states {
-  color: #999;
+  color: #b9d544;
   display: flex;
   overflow: auto;
   flex-direction: column;
@@ -187,23 +142,27 @@ export default {
 }
 
 .states p:hover {
-  color: #d90c1f;
+  color: #00dadc;
 }
 
 @media only screen and (min-width: 768px) {
   .options {
-    width: 500px;
+    width: 600px;
     height: 500px;
-    right:-450px;
-    transform: translate(-90%, 0);
+    left: auto;
+    right: 10px;
   }
   .cities {
-  width: 150px;
+    width: 180px;
   }
 
   .states {
     overflow: inherit;
     flex-wrap: wrap;
+  }
+
+  .select {
+    position: relative;
   }
 }
 
