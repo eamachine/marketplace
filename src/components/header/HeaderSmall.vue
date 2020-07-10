@@ -1,7 +1,7 @@
 <template>
     <header class="header">
       <div class="header-container">
-        <a href=""><img src="../../assets/icon/logo.png" class="logo"></a>
+        <a href="alapata.co"><img src="../../assets/icon/logo.png" class="logo" alt="logo"></a>
         <div class="selection-container">
           <a class="hide-tablet" v-scroll-to="{el: '#s1', offset: -200}">Tienda en linea</a>
           <a class="hide-tablet" v-scroll-to="{el: '#s2', offset: -200}">Marketplace</a>

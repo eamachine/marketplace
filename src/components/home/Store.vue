@@ -1,18 +1,16 @@
 <template>
   <div class="store-wrapper">
     <div @click="open = true">
-      <a>
-        <img class="logo" v-bind:src="require('../../assets/stores/'+ store.urlimg)" :alt="store.name">
-      </a>
-      <h4 class="name">{{ store.name }}</h4>
+      <img class="logo" v-bind:src="require('../../assets/stores/'+ store.urlimg)" :alt="store.name">
+      <h3 class="name">{{ store.name }}</h3>
     </div>
     <overlay :open="open">
       <div class="modal">
-        <img class="close" @click="open = false" src="../../assets/icon/close.svg"/>
+        <img class="close" @click="open = false" alt="close" src="../../assets/icon/close.svg"/>
         <div class="store">
           <img class="logo-md" v-bind:src="require('../../assets/stores/'+ store.urlimg)" :alt="store.name">
           <div class="section">
-            <h3 class="name-md">{{store.name}}</h3>
+            <h4 class="name-md">{{store.name}}</h4>
           </div>
           <div class="social">
             <a v-if="store.site" class="site" :href="store.site" target="_blank"><img class="icon-sm" src="../../assets/icon/shop-home.svg" alt="e-commerce">Tienda en linea</a>
@@ -45,11 +43,11 @@
           </div>
           <div class="services">
           <span class="tooltip" v-for="service in (store.services.replace(/\s/g, '').split(','))" v-bind:key="service">
-            <img v-bind:src="require('../../assets/icon/'+ service + '-icon.png')" class="icon" >
+            <img v-bind:src="require('../../assets/icon/'+ service + '-icon.png')" class="icon" :alt="service">
             <span class="tooltiptext">{{ service }}</span>
           </span>
           </div>
-          <img src="../../assets/icon/heart-empty.svg" class="icon rate">
+          <img src="../../assets/icon/heart-empty.svg" class="icon rate" alt="heart">
         </div>
       </div>
     </overlay>
@@ -156,6 +154,7 @@ export default {
 }
 
 .logo {
+  cursor: pointer;
   height: auto;
   max-width: 95px;
   border-radius: 20px;

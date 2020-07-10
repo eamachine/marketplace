@@ -2,7 +2,7 @@
 <footer class="footer">
   <div class="container">
     <div class="sectionx2">
-      <a href=""><img src="../../assets/icon/logo.png" class="logo"></a>
+      <a href=""><img src="../../assets/icon/logo.png" class="logo" alt="logo"></a>
       <p class="description">Alapata es una plataforma revolucionaria que mezcla el concepto de centro comercial (Marketplace) con tienda en linea (e-commerce) conectando todas las tiendas y servicios para mascotas con los amantes de las mascotas, proveemos la forma mas facil de encontrar los servicios de mascotas y además una plataforma sencilla y escalable para que las tiendas lleven su negocio a internet en un modelo sencillo, para que presenten sus productos y servicios</p>
       <div class="contact">
         <a class="phone" href="tel:3044858712">304 485 8712</a>

@@ -12,7 +12,7 @@
             <br />
             <p class="blue">Próximamente contaremos con pagos a través de NEQUI Y DAVIPLATA</p>
             <br />
-            <img src="../assets/img/payu.png" class="inline-img">
+            <img src="../assets/img/payu.png" class="inline-img" alt="payu">
           </div>
           <div>
             <h2 class="title">Tu tienda en linea profesional</h2>
@@ -89,47 +89,47 @@
       <h2 class="title">Contactanos</h2>
       <info-section id="s3" title="Nuestro Equipo" custom="expanded">
         <div class="head">
-          <img src="../assets/img/asantana.jpg" class="person">
+          <img src="../assets/img/asantana.jpg" alt="asantana" class="person">
           <h3>Alejandra Santana</h3>
           <p>Gerente Comercial Bogotá</p>
         </div>
         <div class="head">
-          <img src="../assets/img/vpena.jpg" class="person">
+          <img src="../assets/img/vpena.jpg" alt="vpena" class="person">
           <h3>Veronica Peña</h3>
           <p>Gerente Comercial Bogotá Occidente</p>
         </div>
         <div class="head">
-          <img src="../assets/img/tefimontes.jpg" class="person">
+          <img src="../assets/img/tefimontes.jpg" alt="tefi" class="person">
           <h3>Stephanie Montes</h3>
           <p>Gerente Comercial Bogotá Norte</p>
         </div>
         <div class="head">
-          <img src="../assets/img/vsantana.jpg" class="person">
+          <img src="../assets/img/vsantana.jpg" alt="vsantana" class="person">
           <h3>Viviana Santana</h3>
           <p>Gerente Comercial Barranquilla</p>
         </div>
         <div class="head">
-          <img src="../assets/img/eliana.jpg" class="person">
+          <img src="../assets/img/eliana.jpg" alt="eliana" class="person">
           <h3>Eliana Arguello</h3>
           <p>Gerente Comercial Medellin</p>
         </div>
         <div class="head">
-          <img src="../assets/img/pancha.jpg" class="person">
+          <img src="../assets/img/pancha.jpg" alt="pancha" class="person">
           <h3>Esperanza Vargas</h3>
           <p>Gerente Comercial Bogotá Sur</p>
         </div>
         <div class="head">
-          <img src="../assets/img/eliana.jpg" class="person">
+          <img src="../assets/img/eliana.jpg" alt="eliana" class="person">
           <h3>Felix Micolta</h3>
           <p>Gerente Comercial Antioquia</p>
         </div>
          <div class="head">
-          <img src="../assets/img/david.jpg" class="person">
+          <img src="../assets/img/david.jpg" alt="david" class="person">
           <h3>Daviv Perez</h3>
           <p>Gerente Comercial Zona Norte</p>
         </div>
         <div class="head">
-          <img src="../assets/img/cgonzalez.jpg" class="person">
+          <img src="../assets/img/cgonzalez.jpg" alt="carlos" class="person">
           <h3>Carlos Gonzalez</h3>
           <p>Gerente Comercial Bogotá Centro</p>
         </div>

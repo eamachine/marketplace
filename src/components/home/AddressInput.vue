@@ -7,11 +7,11 @@
             <img class="location" src="../../assets/icon/location.svg" />
         </div>
     </span>
-    <img class="location-img hide-desktop" src="../../assets/icon/location.svg" @click="open = true"/>
+    <img class="location-img hide-desktop" src="../../assets/icon/location.svg" @click="open = true" alt="close"/>
     <map-icon ref="map" class="map"/>
     <overlay :open="open">
         <div class="modal" v-if="open">
-            <img class="close" src="../../assets/icon/close.svg" @click="open = false"/>
+            <img class="close" src="../../assets/icon/close.svg" @click="open = false" alt="close"/>
             <p>Ciudad: </p>
             <select class="select" v-model="city">
                 <option>Bogotá</option>
@@ -39,7 +39,7 @@
             <button class="button" @click="validateAddress()">Validar</button>
             <span class="action" @click="openModal()">
                 <p>Usa el mapa</p>
-                <img class="location" src="../../assets/icon/location.svg"/>
+                <img class="location" alt="location" src="../../assets/icon/location.svg"/>
             </span>
         </div>
     </overlay>

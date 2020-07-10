@@ -3,13 +3,13 @@
     <div class="values-container">
         <div class="values">
           <div class="value yellow">
-              <img src="../../assets/img/value1.png" class="icon">
+              <img src="../../assets/img/value1.png" class="icon" alt="value1">
           </div>
           <div class="value red">
-              <img src="../../assets/img/value2.png" class="icon">
+              <img src="../../assets/img/value2.png" class="icon" alt="value2">
           </div>
           <div class="value blue">
-              <img src="../../assets/img/value3.png" class="icon">
+              <img src="../../assets/img/value3.png" class="icon" alt="value3">
           </div>
       </div>
     </div>

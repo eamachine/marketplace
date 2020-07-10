@@ -3,7 +3,7 @@
     <h2 class="h2">Ubica tu tienda mas cercana en el mapa</h2>
     <div class="locate-container">
       <span class="locate" @click="geolocate()">
-        <p>Usar GPS</p> <img src="../../assets/icon/location.svg" class="icon">
+        <p>Usar GPS</p> <img src="../../assets/icon/location.svg" class="icon" alt="location">
       </span>
     </div>
     <div class="map-container">
@@ -56,8 +56,8 @@
             <a v-if="store.site" class="site" :href="store.site" target="_blank">Sitio Web</a>
           </div>
           <div class="social">
-            <a v-if="store.instagram" :href="store.instagram" target="_blank"><img src="../../assets/icon/instagram.svg" class="social-icon"></a>
-            <a v-if="store.facebook" :href="store.facebook" target="_blank"><img src="../../assets/icon/facebook.svg" class="social-icon"></a>
+            <a v-if="store.instagram" :href="store.instagram" target="_blank"><img src="../../assets/icon/instagram.svg" class="social-icon" alt="social"></a>
+            <a v-if="store.facebook" :href="store.facebook" target="_blank"><img src="../../assets/icon/facebook.svg" class="social-icon" alt="social"></a>
           </div>
           <p class="services">{{store.services}}</p>
           <img src="../../assets/icon/heart-empty.svg" class="icon rate">

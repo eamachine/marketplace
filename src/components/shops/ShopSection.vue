@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'Comercial'}" class="section">
           <h2 class="h2">¿Tienes una tienda?, <br /> Que esperas para vender en linea?</h2>
           <span>
-            <img src="../../assets/img/features.jpg" class="icon">
+            <img src="../../assets/img/features.jpg" class="icon" alt="features">
             <div>
               <h3>Te ayudamos a poner tu negocio en internet</h3>
               <p>
@@ -19,7 +19,7 @@
         <router-link :to="{ name: 'Comercial'}" class="section">
             <h2 class="h2 blue">¿Tienes un producto?, <br />¿Quieres hacer parte de nuestra red?</h2>
             <span>
-              <img src="../../assets/img/entreprenur.jpg" class="icon">
+              <img src="../../assets/img/entreprenur.jpg" class="icon" alt="entreprenur">
               <div class="info">
                 <h3>Tienes un emprendimiento y buscas como crecer</h3>
                 <p>Quieres que las tiendas en nuestra red vendan tu producto, Te contactamos con los canales de venta</p>

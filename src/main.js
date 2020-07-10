@@ -6,6 +6,7 @@ import router from './router'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import Vuex from 'vuex'
 import VueScrollTo from 'vue-scrollto'
+import VueAnalytics from 'vue-analytics'
 
 Vue.config.productionTip = false
 
@@ -63,6 +64,11 @@ const store = new Vuex.Store({
 })
 
 Vue.use(VueScrollTo)
+
+
+//and then use it in main.js
+Vue.use(VueAnalytics, { id: 'UA-172343507-1', router })
+
 
 /* eslint-disable no-new */
 new Vue({

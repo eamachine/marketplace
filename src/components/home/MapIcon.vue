@@ -2,7 +2,7 @@
 <span>
   <overlay :open="open">
     <div class="map-modal">
-      <img class="close" src="../../assets/icon/close.svg" @click="open = false"/>
+      <img class="close" src="../../assets/icon/close.svg" @click="open = false" alt="close"/>
       <div class="map-address">
         <span>
           <p v-if="this.$store.state.address"><strong> Dirección : </strong> {{ this.$store.state.address }} </p>

@@ -13,27 +13,27 @@
   <div v-if="open" class="services-container">
       <div class="services">
         <div @click="filter('veterinaria')" class="service light-purple">
-          <img src="../../assets/icon/veterinaria-icon.png" class="icon">
+          <img src="../../assets/icon/veterinaria-icon.png" class="icon" alt="veterinaria">
           <h2>Veterinaria</h2>
         </div>
         <div @click="filter('tienda')" class="service purple">
-          <img src="../../assets/icon/tienda-icon.png" class="icon">
+          <img src="../../assets/icon/tienda-icon.png" class="icon" alt="tienda">
           <h2>e-commerce</h2>
         </div>
         <div @click="filter('urgencias')" class="service blue">
-          <img src="../../assets/icon/urgencias-icon.png" class="icon">
+          <img src="../../assets/icon/urgencias-icon.png" class="icon" alt="urgencias">
           <h2>Urgencias</h2>
         </div>
         <div @click="filter('peluqueria')" class="service green">
-          <img src="../../assets/icon/peluqueria-icon.png" class="icon">
+          <img src="../../assets/icon/peluqueria-icon.png" class="icon" alt="peluqueria">
           <h2>Peluqueria</h2>
         </div>
         <div @click="filter('entrenador')" class="service blue">
-          <img src="../../assets/icon/entrenador-icon.png" class="icon">
+          <img src="../../assets/icon/entrenador-icon.png" class="icon" alt="entrenador">
           <h2>Entrenador</h2>
         </div>
         <div @click="filter('hotel')" class="service purple">
-          <img src="../../assets/icon/hotel-icon.png" class="icon">
+          <img src="../../assets/icon/hotel-icon.png" class="icon" alt="hotel">
           <h2>Guarderia</h2>
         </div>
     </div>
