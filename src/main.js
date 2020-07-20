@@ -27,11 +27,16 @@ const store = new Vuex.Store({
     located: false,
     address: null,
     locations: [],
-    stores: []
+    stores: [],
+    allstores: false
   },
   getters: {
     getFilteredStores (state) {
-      return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service))
+      if (state.allstores) {
+        return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service))
+      } else {
+        return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service)).slice(0,7)
+      }
     },
     getStore (state, name) {
       return state.stores.filter(store => store.name === name)
@@ -59,6 +64,9 @@ const store = new Vuex.Store({
     },
     setUserLocation (state, position) {
       state.userlocation = position
+    },
+    toogleAllStores (state) {
+      state.allstores = !state.allstores
     }
   }
 })

@@ -43,16 +43,15 @@ export default {
         }
       },
       center: { lat: 4.6193564, lng: -74.0841302 },
-      userlocation: { lat: 4.6193564, lng: -74.0841302 },
+      userlocation: { lat: 4.6193564, lng: -74.0841302 }
     }
   },
   beforeMount () {
     if (this.$store.state.address) {
       this.geolocationFromAddress(this.$store.state.address)
-    }
-    else {
+    } else {
       this.geolocate()
-    }    
+    }
   },
   methods: {
     geolocate: function () {
@@ -62,7 +61,7 @@ export default {
           lng: position.coords.longitude
         }
 
-        this.$store.commit('setUserLocation',  latLng)
+        this.$store.commit('setUserLocation', latLng)
         this.userlocation = latLng
         this.center = latLng
 

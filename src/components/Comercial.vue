@@ -2,6 +2,7 @@
   <div class="comercial">
     <header-small></header-small>
     <div class="background"></div>
+    <values/>
     <div class="container">
       <h2 class="title">Haz que tu tienda en linea sea tu mejor canal de venta</h2>
       <info-section id="s1" urlimg="features.jpg">
@@ -166,10 +167,11 @@
 <script>
 import HeaderSmall from '@/components/header/HeaderSmall.vue'
 import InfoSection from '@/components/comercial/InfoSection.vue'
+import Values from '@/components/home/Values.vue'
 
 export default {
   name: 'Comercial',
-  components: { HeaderSmall, InfoSection }
+  components: { HeaderSmall, InfoSection, Values }
 }
 </script>
 

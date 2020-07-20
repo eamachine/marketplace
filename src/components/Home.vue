@@ -6,7 +6,6 @@
       <stores id="s1"></stores>
       <google-main-map></google-main-map>      
       <shop-section id="s2"></shop-section>
-      <values/>
     </div>
   </div>
 </div>
@@ -14,14 +13,13 @@
 
 <script>
 import Stores from '@/components/home/Stores.vue'
-import Values from '@/components/home/Values.vue'
 import GoogleMainMap from '@/components/home/GoogleMainMap.vue'
-import ShopSection from '@/components/shops/ShopSection.vue'
+import ShopSection from '@/components/home/ShopSection.vue'
 import MainHeader from '@/components/header/MainHeader.vue'
 
 export default {
   name: 'Home',
-  components: { Stores, Values, GoogleMainMap, ShopSection, MainHeader }
+  components: { Stores, GoogleMainMap, ShopSection, MainHeader }
 }
 </script>
 

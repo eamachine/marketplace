@@ -33,6 +33,7 @@ export default {
   methods: {
     toogleView: function () {
       this.open = !this.open
+      this.$store.commit('toogleAllStores')
       if (!this.open) {
         this.$scrollTo('#s1', { offset: -100 })
       }
@@ -81,7 +82,7 @@ export default {
   background: white;
   padding: 10px 5px;
   border-radius: 10px;
-  height: 15vh;
+  height: 120px;
   width: 24vw;
 }
 
@@ -103,7 +104,7 @@ export default {
   justify-content: center;
   align-items: baseline;
   flex-wrap: wrap;
-  max-height: 360px;
+  max-height: 340px;
   overflow: hidden;
   transition:max-height 4s ease-out;
 }

@@ -1,7 +1,7 @@
 <template>
     <header class="header">
       <div class="header-container">
-        <a href="alapata.co"><img src="../../assets/icon/logo.png" class="logo" alt="logo"></a>
+        <router-link :to="{ name: 'Home'}"><img src="../../assets/icon/logo.png" class="logo" alt="logo"></router-link>
         <div class="selection-container">
           <a class="hide-tablet" v-scroll-to="{el: '#s1', offset: -100}">Nuestras tiendas</a>
           <a class="hide-tablet" v-scroll-to="{el: '#s2', offset: -100}">Contactanos</a>

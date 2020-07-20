@@ -38,9 +38,26 @@
             </div>
             <button class="button" @click="validateAddress()">Validar</button>
             <span class="action" @click="openModal()">
-                <p>Usa el mapa</p>
+                <strong><p>Usa el mapa</p></strong>
                 <img class="location" alt="location" src="../../assets/icon/location.svg"/>
             </span>
+        </div>
+    </overlay>
+    <overlay :open="locate">
+        <div class="locate">
+            <img class="close" src="../../assets/icon/close.svg" @click="locate = false" alt="close"/>
+            <div class="gps-disclaimer">
+                <img src="../../assets/img/gps.png" />
+            </div>
+            <span><p>Alapata usa tu ubicación para mostrarte tiendas geniales cercanas a ti. Permitenos darte una mejor experiencia.</p></span>
+            <div>
+                <button class="button" @click="openAddress()">Usa dirección</button>
+                <span class="action" @click="openModal()">
+                    <strong><p>Usa el mapa</p></strong> 
+                    <img class="location" alt="location" src="../../assets/icon/location.svg"/>
+                </span>
+                <p class="locate-no" @click="locate = false"><strong>Ahora no</strong></p>
+            </div>
         </div>
     </overlay>
 </div>
@@ -55,6 +72,7 @@ export default {
   components: { Overlay, MapIcon },
   data () {
     return {
+      locate: true,  
       open: false,
       city: 'Bogotá',
       root: 'Calle',
@@ -72,7 +90,12 @@ export default {
     },
     openModal: function () {
       this.open = false
+      this.locate = false
       this.$refs.map.open = true
+    },
+    openAddress: function () {
+      this.locate = false
+      this.open = true
     }
   }
 }
@@ -84,6 +107,11 @@ export default {
     height: 20px;
     width: 20px;
     margin-left: 10px;
+}
+
+.gps-disclaimer {
+    width: 100%;
+    text-align: center;
 }
 
 .action {
@@ -157,10 +185,25 @@ input:focus {
     border-radius: 10px;
     position: absolute;
     margin-top: 10px;
-    top: 100px;
+    top: 50px;
     width: 320px;
     left: calc((100% - 340px)/2);
     padding: 10px;
+}
+
+.locate {
+    background: white;
+    border-radius: 10px;
+    position: absolute;
+    margin-top: 10px;
+    top: 50px;
+    width: 320px;
+    left: calc((100% - 340px)/2);
+    padding: 10px;
+}
+
+.locate-no {
+    cursor: pointer;
 }
 
 .address-container {
@@ -185,9 +228,16 @@ input:focus {
 @media only screen and (min-width: 768px) {
   .modal {
     width: 500px;
-    top: 100px;
+    top: 50px;
     left: calc((100% - 520px)/2);
   }
+
+  .locate {
+    width: 500px;
+    top: 50px;
+    left: calc((100% - 520px)/2);
+  }
+
   .address-container-1 {
     margin-top: 0;
     margin-left: 20px;
