@@ -53,7 +53,7 @@
             <div>
                 <button class="button" @click="openAddress()">Usa dirección</button>
                 <span class="action" @click="openModal()">
-                    <strong><p>Usa el mapa</p></strong> 
+                    <strong><p>Usa el mapa</p></strong>
                     <img class="location" alt="location" src="../../assets/icon/location.svg"/>
                 </span>
                 <p class="locate-no" @click="locate = false"><strong>Ahora no</strong></p>
@@ -72,7 +72,7 @@ export default {
   components: { Overlay, MapIcon },
   data () {
     return {
-      locate: true,  
+      locate: true,
       open: false,
       city: 'Bogotá',
       root: 'Calle',

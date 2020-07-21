@@ -4,7 +4,7 @@
   <div class="home">
     <div class="home-container">
       <stores id="s1"></stores>
-      <google-main-map></google-main-map>      
+      <google-main-map></google-main-map>
       <shop-section id="s2"></shop-section>
     </div>
   </div>

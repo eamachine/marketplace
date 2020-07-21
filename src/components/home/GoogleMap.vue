@@ -71,15 +71,15 @@ export default {
         this.$store.commit('setLocated')
       })
     },
-    geolocationFromAddress: function(address) {
+    geolocationFromAddress: function (address) {
       var geocoder = new google.maps.Geocoder()
       geocoder.geocode({'address': address}, this.setGeoCoder)
     },
     moveAddress: function (marker) {
-      this.$store.commit('setUserLocation',  {
-          lat: marker.latLng.lat(),
-          lng: marker.latLng.lng()
-        })
+      this.$store.commit('setUserLocation', {
+        lat: marker.latLng.lat(),
+        lng: marker.latLng.lng()
+      })
 
       this.center = {
         lat: marker.latLng.lat(),
@@ -98,8 +98,8 @@ export default {
     },
     setGeoCoder: function (results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
-        var latitude = results[0].geometry.location.lat();
-        var longitude = results[0].geometry.location.lng();
+        var latitude = results[0].geometry.location.lat()
+        var longitude = results[0].geometry.location.lng()
 
         this.center = {
           lat: latitude,
@@ -111,11 +111,10 @@ export default {
           lng: longitude
         }
 
-        this.$store.commit('setUserLocation',  {
+        this.$store.commit('setUserLocation', {
           lat: latitude,
           lng: longitude
         })
-
       } else {
         console.log('Cannot determine address at this location.' + status)
       }

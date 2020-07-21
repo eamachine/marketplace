@@ -28,14 +28,17 @@ const store = new Vuex.Store({
     address: null,
     locations: [],
     stores: [],
-    allstores: false
+    allstores: false,
+    showmore: false
   },
   getters: {
     getFilteredStores (state) {
+      var stores = state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service))
+      state.showmore = stores.length > 6
       if (state.allstores) {
-        return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service))
+        return stores
       } else {
-        return state.stores.filter(store => store.location.includes(state.location) && store.services.includes(state.service)).slice(0,7)
+        return stores.slice(0, 6)
       }
     },
     getStore (state, name) {
@@ -73,10 +76,7 @@ const store = new Vuex.Store({
 
 Vue.use(VueScrollTo)
 
-
-//and then use it in main.js
 Vue.use(VueAnalytics, { id: 'UA-172343507-1', router })
-
 
 /* eslint-disable no-new */
 new Vue({

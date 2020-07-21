@@ -10,7 +10,7 @@
           <store v-bind:store="store"></store>
         </li>
       </ul>
-      <div class="all-container" v-if="this.$store.getters.getFilteredStores.length > 6">
+      <div class="all-container" v-if="this.$store.state.showmore">
         <button v-if="!open" class="all" @click="toogleView()">Ver mas</button>
         <button v-if="open" class="all" @click="toogleView()">Ver menos</button>
       </div>
@@ -33,10 +33,10 @@ export default {
   methods: {
     toogleView: function () {
       this.open = !this.open
-      this.$store.commit('toogleAllStores')
       if (!this.open) {
         this.$scrollTo('#s1', { offset: -100 })
       }
+      this.$store.commit('toogleAllStores')
     }
   }
 }
@@ -106,7 +106,7 @@ export default {
   flex-wrap: wrap;
   max-height: 340px;
   overflow: hidden;
-  transition:max-height 4s ease-out;
+  transition: max-height 2.5s ease-out;
 }
 
 .h2 {
@@ -123,9 +123,9 @@ export default {
   .general-container {
     margin: 60px auto 0;
   }
-  
+
   .stores {
-    width: 90%;
+    
     margin: 60px auto 0;
   }
 

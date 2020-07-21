@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import EventBus from '@/event-bus.js';
+import EventBus from '@/event-bus.js'
 
 export default {
   name: 'GoogleMainMap',
@@ -94,10 +94,10 @@ export default {
     }
   },
   mounted () {
-    EventBus.$on('locate', this.relocate )
+    EventBus.$on('locate', this.relocate)
   },
   methods: {
-    relocate: function() {
+    relocate: function () {
       this.userlocation = this.$store.state.userlocation
       this.center = this.$store.state.userlocation
     },
@@ -111,7 +111,7 @@ export default {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.$store.commit('setUserLocation',  {
+        this.$store.commit('setUserLocation', {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         })

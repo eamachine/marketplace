@@ -1,7 +1,7 @@
 <template>
   <div class="intro">
     <h2 class="h2">El centro comercial <span class="blue"> online </span> para tu mascota</h2>
-    <h1 class="h1">Encuentra Petshops, Veterinarias y mucho más.</h1>    
+    <h1 class="h1">Encuentra Petshops, Veterinarias y mucho más.</h1>
   </div>
 </template>
 

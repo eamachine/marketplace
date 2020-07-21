@@ -22,7 +22,7 @@
 <script>
 import GoogleMap from '@/components/home/GoogleMap.vue'
 import Overlay from '@/components/home/Overlay.vue'
-import EventBus from '@/event-bus.js';
+import EventBus from '@/event-bus.js'
 
 export default {
   name: 'MapLocation',
@@ -36,11 +36,10 @@ export default {
     geocode: function () {
       this.$refs.gmap.geolocationFromAddress(this.$store.state.address)
     },
-    validateAddress() {
-      EventBus.$emit('locate');
-      this.open = false;
+    validateAddress: function () {
+      EventBus.$emit('locate')
+      this.open = false
     }
-
   }
 }
 </script>
